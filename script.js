@@ -160,12 +160,23 @@ function loadData() {
     const savedStart = localStorage.getItem('gachaStartNum');
     const savedEnd = localStorage.getItem('gachaEndNum');
 
-    startNumInput.value = '';
-    endNumInput.value = '';
+    // Kembalikan rentang nomor ke input
+    if (savedStart) startNumInput.value = savedStart;
+    if (savedEnd) endNumInput.value = savedEnd;
 
-    availableKupon = [];
-    drawnKupon = [];
-    localStorage.clear();
+    // Kembalikan data undian jika ada
+    if (savedAvailable && savedDrawn) {
+        try {
+            availableKupon = JSON.parse(savedAvailable);
+            drawnKupon = JSON.parse(savedDrawn);
+        } catch (e) {
+            availableKupon = [];
+            drawnKupon = [];
+        }
+    } else {
+        availableKupon = [];
+        drawnKupon = [];
+    }
 
     updateUI();
 }
@@ -229,7 +240,7 @@ drawButton.addEventListener('click', async () => {
         updateUI();
 
         drawButton.innerHTML = `<svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg> Acak Sekarang!`;
-    }, 5000);
+    }, 1000);
 });
 
 // ================= RESET BUTTON =================
