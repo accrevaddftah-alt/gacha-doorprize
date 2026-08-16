@@ -99,8 +99,6 @@ header p { color: var(--text-sub); font-size: 12px; font-weight: 500; }
 }
 .trophy-icon { font-size: 24px; margin-bottom: 5px; }
 .result-label { color: var(--text-sub); font-size: 11px; margin-bottom: 5px; }
-.image-wrapper { height: 110px; display: flex; align-items: center; justify-content: center; margin-bottom: 5px; }
-.result-box img { max-width: 90%; max-height: 110px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
 #resultNumber { color: var(--result-text); font-size: 24px; font-weight: 700; letter-spacing: 2px; }
 
 /* KOTAK RIWAYAT: Mengambil sisa layar penuh */

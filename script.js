@@ -3,7 +3,6 @@ let drawnKupon = [];
 
 // Elemen DOM
 const drawButton = document.getElementById('drawButton');
-const resultImage = document.getElementById('resultImage');
 const resultNumber = document.getElementById('resultNumber');
 const remainingCount = document.getElementById('remainingCount');
 const drawnList = document.getElementById('drawnList');
@@ -189,11 +188,8 @@ function updateUI() {
 
     if (drawnKupon.length > 0) {
         const lastWinner = drawnKupon[drawnKupon.length - 1];
-        resultImage.style.display = 'block';
-        resultImage.src = 'kupon doorprize/' + lastWinner + '.png';
         resultNumber.textContent = '#' + String(lastWinner).padStart(2, '0');
     } else {
-        resultImage.style.display = 'none';
         resultNumber.textContent = '#---';
     }
 
@@ -214,12 +210,10 @@ drawButton.addEventListener('click', async () => {
 
     drawButton.disabled = true;
     drawButton.innerHTML = 'Mengacak...';
-    resultImage.style.display = 'block';
 
     let roll = setInterval(() => {
         let rand = availableKupon[Math.floor(Math.random() * availableKupon.length)];
         resultNumber.textContent = '#' + String(rand).padStart(2, '0');
-        resultImage.src = 'kupon doorprize/' + rand + '.png';
     }, 80);
 
     setTimeout(() => {
@@ -229,7 +223,6 @@ drawButton.addEventListener('click', async () => {
         let winner = availableKupon.splice(index, 1)[0];
         drawnKupon.push(winner);
 
-        resultImage.src = 'kupon doorprize/' + winner + '.png';
         resultNumber.textContent = '#' + String(winner).padStart(2, '0');
 
         saveData();
